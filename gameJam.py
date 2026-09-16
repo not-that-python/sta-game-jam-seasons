@@ -15,6 +15,7 @@ BLUE = (0, 0, 255)
 fontSmall = pygame.font.SysFont('monospace', 20)
 fontLarge = pygame.font.SysFont('monospace', 40)
 
+#Checks if the player is overlapping any objects that will change state. If they are, it won't change, otherwise it will
 def changeState(state, entities, grid, player):
     playerDimensions = player.getDimensions()
     changeable = True
@@ -28,6 +29,7 @@ def changeState(state, entities, grid, player):
         state = not state
     return state
 
+#Creates a 2D array of cell objects
 def makeBoard():
     grid = []
     for x in range(0, round(WIDTH / 50)):

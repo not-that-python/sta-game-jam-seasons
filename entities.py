@@ -34,6 +34,7 @@ class Cell():
             solid = False
         return solid
 
+    #Checks if the player is overlapping with the cell by the given number of pixels
     def playerIsInCell(self, playerDimensions, overlap):
         if playerDimensions['left'] <= self.__dimensions['right'] and playerDimensions['left'] >= self.__dimensions['left']:
             xOverlap = self.__dimensions['right'] - playerDimensions['left']
@@ -121,6 +122,7 @@ class Player():
         self.__ySpeed = 0
         self.__speed = 5
 
+    #Moves the player
     def update(self, left, right, up, down, grid):
         self.__xSpeed = 0
         self.__ySpeed = 0
@@ -133,10 +135,12 @@ class Player():
         if down:
             self.__ySpeed += self.__speed
         if self.__xSpeed != 0 and self.__ySpeed != 0:
+            #Normalise the vector so diagonal movement isn't faster than normal movement
             self.__xSpeed *= math.sqrt(2)/2
             self.__ySpeed *= math.sqrt(2)/2
         self.__centreX += self.__xSpeed
         self.__centreY += self.__ySpeed
+        #Stops the player from moving off the edge of the screen
         if self.__centreX > WIDTH - 25:
             self.__centreX = WIDTH - 25
         elif self.__centreX < 25:
@@ -164,8 +168,10 @@ class Player():
                             y = 0
                         self.positionCorrect(x, y, cell)
 
+    #Moves the player out of a solid object
     def positionCorrect(self, x, y, cell):
         if x == 0 or y == 0:
+            #Repeatedly shifts the player one pixel at a time in the given direction until they aren't overlapping
             overlapping = True
             while overlapping:
                 self.__centreX -= x
@@ -174,6 +180,7 @@ class Player():
                 if not cell.playerIsInCell(self.__dimensions, 1):
                     overlapping = False
         else:
+            #Determines the shortest overlap distance to shift the player by
             cellDimensions = cell.getDimensions()
             if x > 0:
                 xOverlap = self.__dimensions['right'] - cellDimensions['left']
