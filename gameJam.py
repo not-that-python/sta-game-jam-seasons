@@ -57,7 +57,8 @@ player = Player()
 wall = Wall(6, 6, grid)
 ice = Ice(6, 4, grid)
 spikes = Spikes(8, 6, grid)
-entities = [wall, ice, spikes]
+metalplate = MetalPlate(8, 4, grid)
+entities = [wall, ice, spikes, metalplate]
 state = True
 stateChange = False
 

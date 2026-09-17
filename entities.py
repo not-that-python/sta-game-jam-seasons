@@ -129,6 +129,18 @@ class Spikes(Entity):
     def __init__(self, x, y, grid):
         super().__init__(x, y, grid, DARKGREY, False, True, False, False)
 
+class MetalPlate(Entity):
+    def __init__(self, x, y, grid):
+        super().__init__(x, y, grid, GREY, False, False, False, True)
+
+    def update(self, state):
+        if state:
+            self._hazard = False
+            self._colour = GREY
+        else:
+            self._hazard = True
+            self._colour = RED
+
 class Player():
     def __init__(self):
         self.__dimensions = {'left': 0, 'right': 39, 'top': 0, 'bottom': 39}
