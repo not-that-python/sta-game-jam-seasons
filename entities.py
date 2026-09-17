@@ -121,7 +121,7 @@ class Ice(Entity):
 
 class Spikes(Entity):
     def __init__(self, x, y, grid):
-        super().__init__(x, y, grid, DARKGREY, True, True, False, False)
+        super().__init__(x, y, grid, DARKGREY, False, True, False, False)
 
 class Player():
     def __init__(self):

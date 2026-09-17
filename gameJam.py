@@ -56,7 +56,8 @@ colour = True
 player = Player()
 wall = Wall(6, 6, grid)
 ice = Ice(6, 4, grid)
-entities = [wall, ice]
+spikes = Spikes(8, 6, grid)
+entities = [wall, ice, spikes]
 state = True
 stateChange = False
 
