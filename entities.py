@@ -34,6 +34,12 @@ class Cell():
         else:
             solid = False
         return solid
+    def isHazard(self):
+        if self.__contains != None:
+            hazard = self.__contains.isHazard()
+        else:
+            hazard = False
+        return hazard
 
     #Checks if the player is overlapping with the cell by the given number of pixels
     def playerIsInCell(self, playerDimensions, overlap):
@@ -177,6 +183,10 @@ class Player():
                         else:
                             y = 0
                         self.positionCorrect(x, y, cell)
+                    if cell.isHazard():
+                        self.__centreX = 19.5
+                        self.__centreY = 19.5
+
 
     #Moves the player out of a solid object
     def positionCorrect(self, x, y, cell):
