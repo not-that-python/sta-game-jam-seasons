@@ -30,7 +30,7 @@ class Cell():
 
     def isSolid(self):
         if self.__contains != None:
-            solid =  self.__contains.isSolid()
+            solid = self.__contains.isSolid()
         else:
             solid = False
         return solid
@@ -73,6 +73,7 @@ class Cell():
                 colour = CREAM
             else:
                 colour = WHITE
+            
         else:
             colour = self.__contains.getColour()
         return colour
