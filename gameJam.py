@@ -41,7 +41,7 @@ def makeBoard():
 
 HEIGHT = 600
 WIDTH = 600
-windowSurface = pygame.display.set_mode((WIDTH, HEIGHT), 0, 32)
+windowSurface = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Game Jam')
 windowSurface.fill(WHITE)
 
@@ -54,7 +54,7 @@ down = False
 colour = True
 player = Player()
 wall = Wall(6, 6, grid)
-ice = Ice(8, 4, grid)
+ice = Ice(6, 4, grid)
 entities = [wall, ice]
 state = True
 stateChange = False
@@ -95,6 +95,6 @@ while True:
             cellColour = cell.getColour()
             pygame.draw.rect(windowSurface, cellColour, (cellDimensions['left'], cellDimensions['top'], 50, 50))
     playerDimensions = player.getDimensions()
-    pygame.draw.rect(windowSurface, GREEN, (playerDimensions['left'], playerDimensions['top'], 50, 50))
+    pygame.draw.rect(windowSurface, GREEN, (playerDimensions['left'], playerDimensions['top'], 40, 40))
     pygame.display.update()
     clock.tick(frameRate)

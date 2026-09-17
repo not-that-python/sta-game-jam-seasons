@@ -115,12 +115,12 @@ class Ice(Entity):
 
 class Player():
     def __init__(self):
-        self.__dimensions = {'left': 0, 'right': 50, 'top': 0, 'bottom': 50}
-        self.__centreX = 25
-        self.__centreY = 25
+        self.__dimensions = {'left': 0, 'right': 39, 'top': 0, 'bottom': 39}
+        self.__centreX = 19.5
+        self.__centreY = 19.5
         self.__xSpeed = 0
         self.__ySpeed = 0
-        self.__speed = 5
+        self.__speed = 4
 
     #Moves the player
     def update(self, left, right, up, down, grid):
@@ -152,7 +152,7 @@ class Player():
         self.updateDimensions(self.__centreX, self.__centreY)
         for x in grid:
             for cell in x:
-                if cell.playerIsInCell(self.__dimensions, 3):
+                if cell.playerIsInCell(self.__dimensions, 2.5):
                     if cell.isSolid():
                         if self.__xSpeed > 0:
                             x = 1
@@ -196,10 +196,10 @@ class Player():
                 self.positionCorrect(x, 0, cell)
 
     def updateDimensions(self, x, y):
-        self.__dimensions['left'] = x - 25
-        self.__dimensions['right'] = x + 25
-        self.__dimensions['top'] = y - 25
-        self.__dimensions['bottom'] = y + 25
+        self.__dimensions['left'] = x - 19.5
+        self.__dimensions['right'] = x + 19.5
+        self.__dimensions['top'] = y - 19.5
+        self.__dimensions['bottom'] = y + 19.5
 
     def getDimensions(self):
         return self.__dimensions
