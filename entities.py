@@ -3,6 +3,7 @@ import math
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREY = (122, 122, 122)
+DARKGREY = (75, 75, 75)
 GREEN = (25, 95, 0)
 LIGHTGREEN = (25, 225, 0)
 CREAM = (220, 216, 130)
@@ -60,7 +61,12 @@ class Cell():
 
     def getColour(self):
         if self.__contains == None:
-            colour = CREAM
+            
+            # checkerboard colours
+            if ((self.__dimensions["left"] + self.__dimensions["top"])/50) % 2 == 0:
+                colour = CREAM
+            else:
+                colour = WHITE
         else:
             colour = self.__contains.getColour()
         return colour
@@ -112,6 +118,10 @@ class Ice(Entity):
         else:
             self._solid = False
             self._colour = GREY
+
+class Spikes(Entity):
+    def __init__(self, x, y, grid):
+        super().__init__(x, y, grid, DARKGREY, True, True, False, False)
 
 class Player():
     def __init__(self):
