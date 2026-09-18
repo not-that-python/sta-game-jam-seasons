@@ -19,6 +19,11 @@ class Cell():
         self.__centreY = yPos + 25
         self.__contains = None
 
+        self.solid = False
+        self.hazard = False
+        self.damaging = False
+        self.changeable = False
+
     def getPos(self):
         return self.__centreX, self.__centreY
 
@@ -28,18 +33,15 @@ class Cell():
     def updateContents(self, entity):
         self.__contains = entity
 
-    def isSolid(self):
-        if self.__contains != None:
-            solid = self.__contains.isSolid()
-        else:
-            solid = False
-        return solid
-    def isHazard(self):
-        if self.__contains != None:
-            hazard = self.__contains.isHazard()
-        else:
-            hazard = False
-        return hazard
+    def containsEntity(self):
+        return self.__contains != None
+
+    def updateCellWithEntityProperties(self):
+        if self.containsEntity():
+            self.solid = self.__contains.isSolid()
+            self.hazard = self.__contains.isHazard()
+            self.damaging = self.__contains.isDamaging()
+            self.changeable = self.__contains.isChanging()
 
     #Checks if the player is overlapping with the cell by the given number of pixels
     def playerIsInCell(self, playerDimensions, overlap):
@@ -88,6 +90,8 @@ class Entity():
         self._hazard = hazard
         self._damaging = damaging
         self._changeable = changeable
+
+        grid[x][y].updateCellWithEntityProperties()
 
     def isSolid(self):
         return self._solid
@@ -181,8 +185,9 @@ class Player():
         self.updateDimensions(self.__centreX, self.__centreY)
         for x in grid:
             for cell in x:
-                if cell.playerIsInCell(self.__dimensions, 2.5):
-                    if cell.isSolid():
+                if cell.playerIsInCell(self.__dimensions, 2.5) and cell.containsEntity():
+                    cell.updateCellWithEntityProperties()
+                    if cell.solid:
                         if self.__xSpeed > 0:
                             x = 1
                         elif self.__xSpeed < 0:
@@ -196,7 +201,7 @@ class Player():
                         else:
                             y = 0
                         self.positionCorrect(x, y, cell)
-                    if cell.isHazard():
+                    if cell.hazard:
                         self.__centreX = 19.5
                         self.__centreY = 19.5
 
