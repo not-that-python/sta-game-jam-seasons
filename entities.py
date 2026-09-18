@@ -9,6 +9,7 @@ LIGHTGREEN = (25, 225, 0)
 CREAM = (220, 216, 130)
 RED = (195, 5, 5)
 BLUE = (0, 0, 255)
+INVISIBLE = (0, 0, 0, 0)
 HEIGHT = 600
 WIDTH = 600
 
@@ -154,6 +155,7 @@ class Player():
         self.__xSpeed = 0
         self.__ySpeed = 0
         self.__speed = 4
+        self.__colour = GREEN
 
     #Moves the player
     def update(self, left, right, up, down, grid):
@@ -241,3 +243,9 @@ class Player():
 
     def getDimensions(self):
         return self.__dimensions
+
+    def respawn(self):
+        pass
+
+    def getColour(self):
+        return self.__colour
