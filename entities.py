@@ -204,8 +204,7 @@ class Player():
                             y = 0
                         self.positionCorrect(x, y, cell)
                     if cell.hazard:
-                        self.__centreX = 19.5
-                        self.__centreY = 19.5
+                        self.respawn()
 
 
     #Moves the player out of a solid object
@@ -245,7 +244,9 @@ class Player():
         return self.__dimensions
 
     def respawn(self):
-        pass
+        self.__centreX = 19.5
+        self.__centreY = 19.5
+        # TO DO: add some respawning property to the PLayer to be seen in the draw loop so that the player flickers between invisible and green 3 times
 
     def getColour(self):
         return self.__colour
