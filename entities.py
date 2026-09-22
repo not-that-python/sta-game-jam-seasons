@@ -158,6 +158,8 @@ class Player():
         self.__colour = GREEN
         self.__total_health = 100
         self.__health = 100
+        self.__isDamaged = False
+        self.__isRespawning = False
 
     #Moves the player
     def update(self, left, right, up, down, grid):
@@ -209,6 +211,7 @@ class Player():
                         self.__health = 0
                     if cell.damaging:
                         self.__health -= 10
+                        self.__isDamaged = True
                         # TO DO: put a delay of half a second or a second between each reduction in health
                 
                 if self.__health <= 0:
@@ -254,6 +257,7 @@ class Player():
         self.__centreX = 19.5
         self.__centreY = 19.5
         self.__health = self.__total_health
+        self.__isRespawning = True
         # TO DO: add some respawning property to the PLayer to be seen in the draw loop so that the player flickers between invisible and green 3 times
 
     def getColour(self):
@@ -263,13 +267,21 @@ class Player():
 
     def getHealth(self):
         return self.__health
-    
     def setHealth(self, newHealth):
         self.__health = newHealth
 
     def getTotalHealth(self):
         return self.__total_health
 
+    def getIsDamaged(self):
+        return self.__isDamaged
+    def setIsDamaged(self, newIsDamaged):
+        self.__isDamaged = newIsDamaged
+
+    def getIsRespawning(self):
+        return self.__isRespawning
+    def setIsRespawning(self, newIsRespawning):
+        self.__isRespawning = newIsRespawning
 
 # a function to wait a certain amount of time
 def wait(pygame, delay):
