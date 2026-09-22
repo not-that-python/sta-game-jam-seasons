@@ -156,6 +156,8 @@ class Player():
         self.__ySpeed = 0
         self.__speed = 4
         self.__colour = GREEN
+        self.__total_health = 100
+        self.__health = 100
 
     #Moves the player
     def update(self, left, right, up, down, grid):
@@ -250,3 +252,14 @@ class Player():
 
     def getColour(self):
         return self.__colour
+    def setColour(self, newColour):
+        self.__colour = newColour
+
+    def getHealth(self):
+        return self.__health
+    
+    def setHealth(self, newHealth):
+        self.__health = newHealth
+
+    def getTotalHealth(self):
+        return self.__total_health
