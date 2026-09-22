@@ -141,10 +141,10 @@ class MetalPlate(Entity):
 
     def update(self, state):
         if state:
-            self._hazard = False
+            self._damaging = False
             self._colour = GREY
         else:
-            self._hazard = True
+            self._damaging = True
             self._colour = RED
 
 class Player():
@@ -206,8 +206,13 @@ class Player():
                             y = 0
                         self.positionCorrect(x, y, cell)
                     if cell.hazard:
-                        self.respawn()
-
+                        self.__health = 0
+                    if cell.damaging:
+                        self.__health -= 10
+                        # TO DO: put a delay of half a second or a second between each reduction in health
+                
+                if self.__health <= 0:
+                    self.respawn()
 
     #Moves the player out of a solid object
     def positionCorrect(self, x, y, cell):
