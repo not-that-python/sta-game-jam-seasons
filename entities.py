@@ -269,3 +269,13 @@ class Player():
 
     def getTotalHealth(self):
         return self.__total_health
+
+
+# a function to wait a certain amount of time
+def wait(pygame, delay):
+    currentTime = pygame.time.get_ticks()
+    newTime = currentTime + delay
+    while pygame.time.get_ticks() < newTime:
+        continue
+    print(delay, "milliseconds have passed")
+    return
