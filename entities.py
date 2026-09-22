@@ -248,6 +248,7 @@ class Player():
     def respawn(self):
         self.__centreX = 19.5
         self.__centreY = 19.5
+        self.__health = self.__total_health
         # TO DO: add some respawning property to the PLayer to be seen in the draw loop so that the player flickers between invisible and green 3 times
 
     def getColour(self):

@@ -92,6 +92,9 @@ while True:
     if stateChange:
         state = changeState(state, entities, grid, player)
         stateChange = False
+
+    # all drawing goes here I assume
+    # draw playing grid
     for column in grid:
         for cell in column:
             cell.update(state)
@@ -100,5 +103,15 @@ while True:
             pygame.draw.rect(windowSurface, cellColour, (cellDimensions['left'], cellDimensions['top'], 50, 50))
     playerDimensions = player.getDimensions()
     pygame.draw.rect(windowSurface, player.getColour(), (playerDimensions['left'], playerDimensions['top'], 40, 40))
+
+
+    # change health for testing
+    player.setHealth(90)
+    # draw health bar
+    bar_width = 520
+    health_width = bar_width / player.getTotalHealth() * player.getHealth()
+    pygame.draw.rect(windowSurface, BLACK, ((WIDTH/2 - (bar_width/2)), (HEIGHT - 20), bar_width, 15), width=3)
+    pygame.draw.rect(windowSurface, RED, (WIDTH/2 - (bar_width/2), HEIGHT - 20, health_width, 15))
+
     pygame.display.update()
     clock.tick(frameRate)
